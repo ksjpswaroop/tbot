@@ -1,0 +1,11 @@
+--trusted-host=rbcartifactory.fg.rbc.com
+--index-url=http://rbcartifactory.fg.rbc.com/artifactory/api/pypi/pypi-remote/simple/
+flask
+scipy
+pandas
+numpy
+sklearn
+xlrd
+xlsxwriter
+
+

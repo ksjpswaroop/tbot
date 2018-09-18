@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ticket Recommender Bot</title>
+ <link rel="stylesheet" href="{{ url_for('static' , filename='css/main.css') }}">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<!-- Figure out a way to make background -->
+<div id = "header">
+
+        <h1> Ticket Recommender Bot <h1>
+
+
+</div>
+<br><br>
+<div id="guidelines">
+
+    <h3> Guidelines to upload files </h3>
+
+    <ol>
+        <l1> Upload files must be in xlsx format</l1>
+        <li> Following are the files you can upload</li>
+            <ul>
+               <li> SM9 (Service Manager 9) data</li>
+                <li> Service Now data</li>
+                <li> Vacation Calender (for ESAM Analyst) </li>
+                <li> Ticket in an Analyst Queue </li>
+                <li> ESAM Roaster (Analyst working in ESAM) </li>
+                <li> Global Operations Schedule (Various Team in ESAM & Analyst working in each team) </li>
+                <li> Client Base to Team Mapper</li>
+            </ul>
+        <li></li>
+    </ol>
+
+</div>
+
+<br><br><hr>
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+
+
+    <strong>Files:</strong><br><br>
+    <input id="file-picker" type="file" name="file" accept="*.xlsx" multiple>
+    <div id="msg"></div><br><br>
+
+    Max tickets per analyst &nbsp;&nbsp; <input type="text" placeholder="Number of tickets" /> <br><br>
+    <input type="submit" value="Upload!" id="upload-button">
+</form>
+<br><br>
+<hr>
+
+<form id="train" action="{{ url_for('train') }}" method="POST" enctype="multipart/form-data">
+
+    <strong>Train Bot:</strong><br><br>
+    <input type="submit" value="Train" >
+    <!--<div id="msg"></div><br><br>-->
+
+
+</form>
+<br><br>
+<hr>
+
+<form id="predict" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+
+
+    <strong>Recommend Analyst:</strong><br><br>
+    <input type="submit" value="Recommend" >
+    <!--<div id="msg"></div><br><br>-->
+
+</form>
+
+
+
+
+
+
+
+
+</body>
+<script>
+    $("#file-picker").change(function(){
+        var input = document.getElementById('file-picker');
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+            //if ((ext == '.xlsx') || (ext == 'png'))
+            if (ext == 'xlsx')
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+        }
+    } );
+</script>
+</html>

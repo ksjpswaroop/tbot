@@ -1,0 +1,11 @@
+body {
+background: url(../images/background.png) no-repeat 50% 50%;
+font-family: 'Yantramanav', sans-serif;
+}
+
+h1 {
+	font-family: 'Yantramanav', sans-serif;
+	font-size: 200%;
+	font-weight: 150;
+	text-align : center;
+}
